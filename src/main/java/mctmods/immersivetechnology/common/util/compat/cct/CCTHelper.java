@@ -33,6 +33,7 @@ public class CCTHelper extends ITCompatModule {
             ComputerCraftAPI.registerPeripheralProvider(new MeltingCruciblePeripheralProvider());
         if (Config.ITConfig.Machines.Multiblock.enable_electrolyticCrucibleBattery)
             ComputerCraftAPI.registerPeripheralProvider(new ElectrolyticCrucibleBatteryPeripheralProvider());
+        ComputerCraftAPI.registerPeripheralProvider(new SteelSheetmetalTankPeripheralProvider());
     }
 
     @Override

@@ -24,22 +24,22 @@ public class SteamTurbinePeripheralProvider implements IPeripheralProvider {
         TileEntity entity = world.getTileEntity(blockPos);
 
         if (entity instanceof TileEntitySteamTurbineMaster) {
-            return new DistillerPeripheral(world, blockPos, TileEntitySteamTurbineMaster.class);
+            return new SteamTurbinePeripheral(world, blockPos, TileEntitySteamTurbineMaster.class);
         }
 
         return null;
     }
 
-    private static class DistillerPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntitySteamTurbineMaster> {
+    private static class SteamTurbinePeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntitySteamTurbineMaster> {
 
-        protected DistillerPeripheral(World w, BlockPos pos, Class<? extends TileEntitySteamTurbineMaster> myClass) {
+        protected SteamTurbinePeripheral(World w, BlockPos pos, Class<? extends TileEntitySteamTurbineMaster> myClass) {
             super(w, pos, myClass);
         }
 
         @Nonnull
         @Override
         public String getType() {
-            return String.format("%s_gasTurbine", ImmersiveTechnology.MODID);
+            return String.format("%s_steamTurbine", ImmersiveTechnology.MODID);
         }
 
         @Nonnull
@@ -57,7 +57,7 @@ public class SteamTurbinePeripheralProvider implements IPeripheralProvider {
 
         @Nullable
         @Override
-        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException, InterruptedException {
+        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException {
             TileEntitySteamTurbineMaster entity = getTileEntity();
 
             if (entity == null) {
@@ -101,8 +101,8 @@ public class SteamTurbinePeripheralProvider implements IPeripheralProvider {
 
         @Override
         public boolean equals(@Nullable IPeripheral iPeripheral) {
-            if (iPeripheral instanceof DistillerPeripheral) {
-                DistillerPeripheral other = (DistillerPeripheral) iPeripheral;
+            if (iPeripheral instanceof SteamTurbinePeripheral) {
+                SteamTurbinePeripheral other = (SteamTurbinePeripheral) iPeripheral;
                 return other.getTileEntity().getPos().equals(getTileEntity().getPos());
             }
             return false;

@@ -59,7 +59,7 @@ public class DistillerPeripheralProvider implements IPeripheralProvider {
 
         @Nullable
         @Override
-        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException, InterruptedException {
+        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException {
             TileEntityDistillerMaster entity = getTileEntity();
 
             if (entity == null) {

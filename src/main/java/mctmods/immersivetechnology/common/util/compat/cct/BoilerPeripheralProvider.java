@@ -59,7 +59,7 @@ public class BoilerPeripheralProvider implements IPeripheralProvider {
 
         @Nullable
         @Override
-        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException, InterruptedException {
+        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException {
             TileEntityBoilerMaster entity = this.getTileEntity();
 
             if (entity == null) {

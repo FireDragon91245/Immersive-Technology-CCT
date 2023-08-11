@@ -5,9 +5,7 @@ import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
-import it.unimi.dsi.fastutil.Hash;
 import mctmods.immersivetechnology.ImmersiveTechnology;
-import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntitySolarTowerMaster;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntitySolarTowerMaster;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -26,22 +24,22 @@ public class SolarTowerPeripheralProvider implements IPeripheralProvider {
         TileEntity entity = world.getTileEntity(blockPos);
 
         if (entity instanceof TileEntitySolarTowerMaster) {
-            return new DistillerPeripheral(world, blockPos, TileEntitySolarTowerMaster.class);
+            return new SolarTowerPeripheral(world, blockPos, TileEntitySolarTowerMaster.class);
         }
 
         return null;
     }
 
-    private static class DistillerPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntitySolarTowerMaster> {
+    private static class SolarTowerPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntitySolarTowerMaster> {
 
-        protected DistillerPeripheral(World w, BlockPos pos, Class<? extends TileEntitySolarTowerMaster> myClass) {
+        protected SolarTowerPeripheral(World w, BlockPos pos, Class<? extends TileEntitySolarTowerMaster> myClass) {
             super(w, pos, myClass);
         }
 
         @Nonnull
         @Override
         public String getType() {
-            return String.format("%s_gasTurbine", ImmersiveTechnology.MODID);
+            return String.format("%s_solarTower", ImmersiveTechnology.MODID);
         }
 
         @Nonnull
@@ -64,7 +62,7 @@ public class SolarTowerPeripheralProvider implements IPeripheralProvider {
 
         @Nullable
         @Override
-        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException, InterruptedException {
+        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException {
             TileEntitySolarTowerMaster entity = getTileEntity();
 
             if (entity == null) {
@@ -141,8 +139,8 @@ public class SolarTowerPeripheralProvider implements IPeripheralProvider {
 
         @Override
         public boolean equals(@Nullable IPeripheral iPeripheral) {
-            if (iPeripheral instanceof DistillerPeripheral) {
-                DistillerPeripheral other = (DistillerPeripheral) iPeripheral;
+            if (iPeripheral instanceof SolarTowerPeripheral) {
+                SolarTowerPeripheral other = (SolarTowerPeripheral) iPeripheral;
                 return other.getTileEntity().getPos().equals(getTileEntity().getPos());
             }
             return false;

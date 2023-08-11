@@ -24,22 +24,22 @@ public class SolarMelterPeripheralProvider implements IPeripheralProvider {
         TileEntity entity = world.getTileEntity(blockPos);
 
         if (entity instanceof TileEntitySolarMelterMaster) {
-            return new DistillerPeripheral(world, blockPos, TileEntitySolarMelterMaster.class);
+            return new SolarMelterPeripheral(world, blockPos, TileEntitySolarMelterMaster.class);
         }
 
         return null;
     }
 
-    private static class DistillerPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntitySolarMelterMaster> {
+    private static class SolarMelterPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntitySolarMelterMaster> {
 
-        protected DistillerPeripheral(World w, BlockPos pos, Class<? extends TileEntitySolarMelterMaster> myClass) {
+        protected SolarMelterPeripheral(World w, BlockPos pos, Class<? extends TileEntitySolarMelterMaster> myClass) {
             super(w, pos, myClass);
         }
 
         @Nonnull
         @Override
         public String getType() {
-            return String.format("%s_gasTurbine", ImmersiveTechnology.MODID);
+            return String.format("%s_solarMelter", ImmersiveTechnology.MODID);
         }
 
         @Nonnull
@@ -59,7 +59,7 @@ public class SolarMelterPeripheralProvider implements IPeripheralProvider {
 
         @Nullable
         @Override
-        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException, InterruptedException {
+        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException {
             TileEntitySolarMelterMaster entity = getTileEntity();
 
             if (entity == null) {
@@ -112,8 +112,8 @@ public class SolarMelterPeripheralProvider implements IPeripheralProvider {
 
         @Override
         public boolean equals(@Nullable IPeripheral iPeripheral) {
-            if (iPeripheral instanceof DistillerPeripheral) {
-                DistillerPeripheral other = (DistillerPeripheral) iPeripheral;
+            if (iPeripheral instanceof SolarMelterPeripheral) {
+                SolarMelterPeripheral other = (SolarMelterPeripheral) iPeripheral;
                 return other.getTileEntity().getPos().equals(getTileEntity().getPos());
             }
             return false;

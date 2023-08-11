@@ -24,22 +24,22 @@ public class HighPressureSteamTurbinePeripheralProvider implements IPeripheralPr
         TileEntity entity = world.getTileEntity(blockPos);
 
         if (entity instanceof TileEntityHighPressureSteamTurbineMaster) {
-            return new DistillerPeripheral(world, blockPos, TileEntityHighPressureSteamTurbineMaster.class);
+            return new HighPressureSteamTurbinePeripheral(world, blockPos, TileEntityHighPressureSteamTurbineMaster.class);
         }
 
         return null;
     }
 
-    private static class DistillerPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntityHighPressureSteamTurbineMaster> {
+    private static class HighPressureSteamTurbinePeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntityHighPressureSteamTurbineMaster> {
 
-        protected DistillerPeripheral(World w, BlockPos pos, Class<? extends TileEntityHighPressureSteamTurbineMaster> myClass) {
+        protected HighPressureSteamTurbinePeripheral(World w, BlockPos pos, Class<? extends TileEntityHighPressureSteamTurbineMaster> myClass) {
             super(w, pos, myClass);
         }
 
         @Nonnull
         @Override
         public String getType() {
-            return String.format("%s_gasTurbine", ImmersiveTechnology.MODID);
+            return String.format("%s_highPressureSteamTurbine", ImmersiveTechnology.MODID);
         }
 
         @Nonnull
@@ -57,7 +57,7 @@ public class HighPressureSteamTurbinePeripheralProvider implements IPeripheralPr
 
         @Nullable
         @Override
-        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException, InterruptedException {
+        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException {
             TileEntityHighPressureSteamTurbineMaster entity = getTileEntity();
 
             if (entity == null) {
@@ -101,8 +101,8 @@ public class HighPressureSteamTurbinePeripheralProvider implements IPeripheralPr
 
         @Override
         public boolean equals(@Nullable IPeripheral iPeripheral) {
-            if (iPeripheral instanceof DistillerPeripheral) {
-                DistillerPeripheral other = (DistillerPeripheral) iPeripheral;
+            if (iPeripheral instanceof HighPressureSteamTurbinePeripheral) {
+                HighPressureSteamTurbinePeripheral other = (HighPressureSteamTurbinePeripheral) iPeripheral;
                 return other.getTileEntity().getPos().equals(getTileEntity().getPos());
             }
             return false;

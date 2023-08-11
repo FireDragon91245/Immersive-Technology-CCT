@@ -6,9 +6,7 @@ import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import mctmods.immersivetechnology.ImmersiveTechnology;
-import mctmods.immersivetechnology.common.Config;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityGasTurbineMaster;
-import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityHeatExchangerMaster;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -26,15 +24,15 @@ public class GasTurbinePeripheralProvider implements IPeripheralProvider {
         TileEntity entity = world.getTileEntity(blockPos);
 
         if (entity instanceof TileEntityGasTurbineMaster) {
-            return new DistillerPeripheral(world, blockPos, TileEntityGasTurbineMaster.class);
+            return new GasTurbinePeripheralPeripheral(world, blockPos, TileEntityGasTurbineMaster.class);
         }
 
         return null;
     }
 
-    private static class DistillerPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntityGasTurbineMaster> {
+    private static class GasTurbinePeripheralPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntityGasTurbineMaster> {
 
-        protected DistillerPeripheral(World w, BlockPos pos, Class<? extends TileEntityGasTurbineMaster> myClass) {
+        protected GasTurbinePeripheralPeripheral(World w, BlockPos pos, Class<? extends TileEntityGasTurbineMaster> myClass) {
             super(w, pos, myClass);
         }
 
@@ -59,7 +57,7 @@ public class GasTurbinePeripheralProvider implements IPeripheralProvider {
 
         @Nullable
         @Override
-        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException, InterruptedException {
+        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException {
             TileEntityGasTurbineMaster entity = getTileEntity();
 
             if (entity == null) {
@@ -103,8 +101,8 @@ public class GasTurbinePeripheralProvider implements IPeripheralProvider {
 
         @Override
         public boolean equals(@Nullable IPeripheral iPeripheral) {
-            if (iPeripheral instanceof DistillerPeripheral) {
-                DistillerPeripheral other = (DistillerPeripheral) iPeripheral;
+            if (iPeripheral instanceof GasTurbinePeripheralPeripheral) {
+                GasTurbinePeripheralPeripheral other = (GasTurbinePeripheralPeripheral) iPeripheral;
                 return other.getTileEntity().getPos().equals(getTileEntity().getPos());
             }
             return false;

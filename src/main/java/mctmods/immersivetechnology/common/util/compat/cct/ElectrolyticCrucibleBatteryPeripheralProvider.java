@@ -7,7 +7,6 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import mctmods.immersivetechnology.ImmersiveTechnology;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityElectrolyticCrucibleBatteryMaster;
-import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityElectrolyticCrucibleBatteryMaster;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -25,22 +24,22 @@ public class ElectrolyticCrucibleBatteryPeripheralProvider implements IPeriphera
         TileEntity entity = world.getTileEntity(blockPos);
 
         if (entity instanceof TileEntityElectrolyticCrucibleBatteryMaster) {
-            return new DistillerPeripheral(world, blockPos, TileEntityElectrolyticCrucibleBatteryMaster.class);
+            return new ElectrolyticCrucibleBatteryPeripheral(world, blockPos, TileEntityElectrolyticCrucibleBatteryMaster.class);
         }
 
         return null;
     }
 
-    private static class DistillerPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntityElectrolyticCrucibleBatteryMaster> {
+    private static class ElectrolyticCrucibleBatteryPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntityElectrolyticCrucibleBatteryMaster> {
 
-        protected DistillerPeripheral(World w, BlockPos pos, Class<? extends TileEntityElectrolyticCrucibleBatteryMaster> myClass) {
+        protected ElectrolyticCrucibleBatteryPeripheral(World w, BlockPos pos, Class<? extends TileEntityElectrolyticCrucibleBatteryMaster> myClass) {
             super(w, pos, myClass);
         }
 
         @Nonnull
         @Override
         public String getType() {
-            return String.format("%s_heatExchanger", ImmersiveTechnology.MODID);
+            return String.format("%s_electrolyticCrucibleBattery", ImmersiveTechnology.MODID);
         }
 
         @Nonnull
@@ -58,7 +57,7 @@ public class ElectrolyticCrucibleBatteryPeripheralProvider implements IPeriphera
 
         @Nullable
         @Override
-        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException, InterruptedException {
+        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException {
             TileEntityElectrolyticCrucibleBatteryMaster entity = getTileEntity();
 
             if (entity == null) {
@@ -94,8 +93,8 @@ public class ElectrolyticCrucibleBatteryPeripheralProvider implements IPeriphera
 
         @Override
         public boolean equals(@Nullable IPeripheral iPeripheral) {
-            if (iPeripheral instanceof DistillerPeripheral) {
-                DistillerPeripheral other = (DistillerPeripheral) iPeripheral;
+            if (iPeripheral instanceof ElectrolyticCrucibleBatteryPeripheral) {
+                ElectrolyticCrucibleBatteryPeripheral other = (ElectrolyticCrucibleBatteryPeripheral) iPeripheral;
                 return other.getTileEntity().getPos().equals(getTileEntity().getPos());
             }
             return false;

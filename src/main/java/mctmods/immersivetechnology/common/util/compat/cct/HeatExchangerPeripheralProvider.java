@@ -24,15 +24,15 @@ public class HeatExchangerPeripheralProvider implements IPeripheralProvider {
         TileEntity entity = world.getTileEntity(blockPos);
 
         if (entity instanceof TileEntityHeatExchangerMaster) {
-            return new DistillerPeripheral(world, blockPos, TileEntityHeatExchangerMaster.class);
+            return new HeatExchangerPeripheral(world, blockPos, TileEntityHeatExchangerMaster.class);
         }
 
         return null;
     }
 
-    private static class DistillerPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntityHeatExchangerMaster> {
+    private static class HeatExchangerPeripheral extends ITPeripheral.ITPeripheralMultiblock<TileEntityHeatExchangerMaster> {
 
-        protected DistillerPeripheral(World w, BlockPos pos, Class<? extends TileEntityHeatExchangerMaster> myClass) {
+        protected HeatExchangerPeripheral(World w, BlockPos pos, Class<? extends TileEntityHeatExchangerMaster> myClass) {
             super(w, pos, myClass);
         }
 
@@ -57,7 +57,7 @@ public class HeatExchangerPeripheralProvider implements IPeripheralProvider {
 
         @Nullable
         @Override
-        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException, InterruptedException {
+        public Object[] callMethod(@Nonnull IComputerAccess iComputerAccess, @Nonnull ILuaContext iLuaContext, int i, @Nonnull Object[] objects) throws LuaException {
             TileEntityHeatExchangerMaster entity = getTileEntity();
 
             if (entity == null) {
@@ -93,8 +93,8 @@ public class HeatExchangerPeripheralProvider implements IPeripheralProvider {
 
         @Override
         public boolean equals(@Nullable IPeripheral iPeripheral) {
-            if (iPeripheral instanceof DistillerPeripheral) {
-                DistillerPeripheral other = (DistillerPeripheral) iPeripheral;
+            if (iPeripheral instanceof HeatExchangerPeripheral) {
+                HeatExchangerPeripheral other = (HeatExchangerPeripheral) iPeripheral;
                 return other.getTileEntity().getPos().equals(getTileEntity().getPos());
             }
             return false;
