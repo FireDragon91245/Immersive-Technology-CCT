@@ -48,7 +48,7 @@ public  abstract class ITPeripheral<T extends TileEntityIEBase> implements IPeri
             boolean enabled = CheckArgsBool(args);
             TileEntityMultiblockMetal<?, ?> te = this.getTileEntity();
             if (!te.computerOn.isPresent()) {
-                throw new IllegalStateException("Computer control must be enabled to enable or disable the machine");
+                throw new LuaException("Computer control must be enabled to enable or disable the machine");
             } else {
                 te.computerOn = Optional.of(enabled);
                 return null;
@@ -57,8 +57,8 @@ public  abstract class ITPeripheral<T extends TileEntityIEBase> implements IPeri
 
         private boolean CheckArgsBool(Object[] args) throws LuaException {
             if (args.length == 1) {
-                if (boolean.class.isAssignableFrom(args[0].getClass())) {
-                    return  (boolean) args[0];
+                if (Boolean.class.isAssignableFrom(args[0].getClass())) {
+                    return  (Boolean) args[0];
                 } else {
                     throw new LuaException("Expected boolean");
                 }
