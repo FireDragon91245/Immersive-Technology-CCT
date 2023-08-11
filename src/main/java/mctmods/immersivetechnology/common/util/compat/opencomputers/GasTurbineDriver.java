@@ -22,7 +22,7 @@ public class GasTurbineDriver extends DriverSidedTileEntity {
             TileEntityGasTurbineSlave te = (TileEntityGasTurbineSlave) tile;
             TileEntityGasTurbineMaster tem = te.master();
             if(tem != null && te.isRedstonePos()) {
-                return new GasTurbineDriver.SteamTurbineEnvironment(world, tem.getPos());
+                return new GasTurbineEnvironment(world, tem.getPos());
             }
         }
         return null;
@@ -33,8 +33,8 @@ public class GasTurbineDriver extends DriverSidedTileEntity {
         return TileEntityGasTurbineSlave.class;
     }
 
-    public class SteamTurbineEnvironment extends ManagedEnvironmentIE.ManagedEnvMultiblock<TileEntityGasTurbineMaster> {
-        public SteamTurbineEnvironment(World world, BlockPos pos) {
+    public class GasTurbineEnvironment extends ManagedEnvironmentIE.ManagedEnvMultiblock<TileEntityGasTurbineMaster> {
+        public GasTurbineEnvironment(World world, BlockPos pos) {
             super(world, pos, TileEntityGasTurbineMaster.class);
         }
 

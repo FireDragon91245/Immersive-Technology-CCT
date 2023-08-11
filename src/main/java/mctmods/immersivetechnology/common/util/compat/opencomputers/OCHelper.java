@@ -16,6 +16,7 @@ public class OCHelper extends ITCompatModule {
 	public void init() {
 		if (Config.ITConfig.Machines.Multiblock.enable_boiler) API.driver.add(new BoilerDriver());
 		if (Config.ITConfig.Machines.Multiblock.enable_steamTurbine) API.driver.add(new SteamTurbineDriver());
+		if (Config.ITConfig.Machines.Multiblock.enable_highPressureSteamTurbine) API.driver.add(new HighPressureSteamTurbineDriver());
 		if (Config.ITConfig.Machines.Multiblock.enable_distiller) API.driver.add(new DistillerDriver());
 		if (Config.ITConfig.Machines.Multiblock.enable_solarTower) API.driver.add(new SolarTowerDriver());
 		if (Config.ITConfig.Machines.Multiblock.enable_gasTurbine) API.driver.add(new GasTurbineDriver());
