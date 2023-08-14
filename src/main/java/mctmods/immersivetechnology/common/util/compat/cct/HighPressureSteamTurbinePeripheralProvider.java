@@ -7,6 +7,7 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import mctmods.immersivetechnology.ImmersiveTechnology;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityHighPressureSteamTurbineMaster;
+import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityHighPressureSteamTurbineSlave;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -23,8 +24,12 @@ public class HighPressureSteamTurbinePeripheralProvider implements IPeripheralPr
     public IPeripheral getPeripheral(@Nonnull World world, @Nonnull BlockPos blockPos, @Nonnull EnumFacing enumFacing) {
         TileEntity entity = world.getTileEntity(blockPos);
 
-        if (entity instanceof TileEntityHighPressureSteamTurbineMaster) {
-            return new HighPressureSteamTurbinePeripheral(world, blockPos, TileEntityHighPressureSteamTurbineMaster.class);
+        if(entity instanceof TileEntityHighPressureSteamTurbineSlave) {
+            TileEntityHighPressureSteamTurbineSlave te = (TileEntityHighPressureSteamTurbineSlave) entity;
+            TileEntityHighPressureSteamTurbineMaster tem = te.master();
+            if(tem != null && te.isRedstonePos()) {
+                return new HighPressureSteamTurbinePeripheral(world, tem.getPos(), TileEntityHighPressureSteamTurbineMaster.class);
+            }
         }
 
         return null;

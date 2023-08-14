@@ -7,6 +7,7 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import mctmods.immersivetechnology.ImmersiveTechnology;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityHeatExchangerMaster;
+import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityHeatExchangerSlave;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -23,8 +24,12 @@ public class HeatExchangerPeripheralProvider implements IPeripheralProvider {
     public IPeripheral getPeripheral(@Nonnull World world, @Nonnull BlockPos blockPos, @Nonnull EnumFacing enumFacing) {
         TileEntity entity = world.getTileEntity(blockPos);
 
-        if (entity instanceof TileEntityHeatExchangerMaster) {
-            return new HeatExchangerPeripheral(world, blockPos, TileEntityHeatExchangerMaster.class);
+        if(entity instanceof TileEntityHeatExchangerSlave) {
+            TileEntityHeatExchangerSlave te = (TileEntityHeatExchangerSlave) entity;
+            TileEntityHeatExchangerMaster tem = te.master();
+            if(tem != null && te.isRedstonePos()) {
+                return new HeatExchangerPeripheral(world, tem.getPos(), TileEntityHeatExchangerMaster.class);
+            }
         }
 
         return null;

@@ -7,6 +7,7 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import mctmods.immersivetechnology.ImmersiveTechnology;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityDistillerMaster;
+import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityDistillerSlave;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -23,8 +24,12 @@ public class DistillerPeripheralProvider implements IPeripheralProvider {
     public IPeripheral getPeripheral(@Nonnull World world, @Nonnull BlockPos blockPos, @Nonnull EnumFacing enumFacing) {
         TileEntity entity = world.getTileEntity(blockPos);
 
-        if (entity instanceof TileEntityDistillerMaster) {
-            return new DistillerPeripheral(world, blockPos, TileEntityDistillerMaster.class);
+        if(entity instanceof TileEntityDistillerSlave) {
+            TileEntityDistillerSlave te = (TileEntityDistillerSlave) entity;
+            TileEntityDistillerMaster tem = te.master();
+            if(tem != null && te.isRedstonePos()) {
+                return new DistillerPeripheral(world, tem.getPos(), TileEntityDistillerMaster.class);
+            }
         }
 
         return null;

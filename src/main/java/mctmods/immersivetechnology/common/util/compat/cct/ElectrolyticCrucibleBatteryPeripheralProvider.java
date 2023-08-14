@@ -7,6 +7,7 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import mctmods.immersivetechnology.ImmersiveTechnology;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityElectrolyticCrucibleBatteryMaster;
+import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityElectrolyticCrucibleBatterySlave;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -23,8 +24,12 @@ public class ElectrolyticCrucibleBatteryPeripheralProvider implements IPeriphera
     public IPeripheral getPeripheral(@Nonnull World world, @Nonnull BlockPos blockPos, @Nonnull EnumFacing enumFacing) {
         TileEntity entity = world.getTileEntity(blockPos);
 
-        if (entity instanceof TileEntityElectrolyticCrucibleBatteryMaster) {
-            return new ElectrolyticCrucibleBatteryPeripheral(world, blockPos, TileEntityElectrolyticCrucibleBatteryMaster.class);
+        if(entity instanceof TileEntityElectrolyticCrucibleBatterySlave) {
+            TileEntityElectrolyticCrucibleBatterySlave te = (TileEntityElectrolyticCrucibleBatterySlave) entity;
+            TileEntityElectrolyticCrucibleBatteryMaster tem = te.master();
+            if(tem != null && te.isRedstonePos()) {
+                return new ElectrolyticCrucibleBatteryPeripheral(world, tem.getPos(), TileEntityElectrolyticCrucibleBatteryMaster.class);
+            }
         }
 
         return null;

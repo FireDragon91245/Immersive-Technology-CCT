@@ -7,6 +7,7 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import mctmods.immersivetechnology.ImmersiveTechnology;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityMeltingCrucibleMaster;
+import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityMeltingCrucibleSlave;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -23,8 +24,12 @@ public class MeltingCruciblePeripheralProvider implements IPeripheralProvider {
     public IPeripheral getPeripheral(@Nonnull World world, @Nonnull BlockPos blockPos, @Nonnull EnumFacing enumFacing) {
         TileEntity entity = world.getTileEntity(blockPos);
 
-        if (entity instanceof TileEntityMeltingCrucibleMaster) {
-            return new MeltingCruciblePeripheral(world, blockPos, TileEntityMeltingCrucibleMaster.class);
+        if(entity instanceof TileEntityMeltingCrucibleSlave) {
+            TileEntityMeltingCrucibleSlave te = (TileEntityMeltingCrucibleSlave) entity;
+            TileEntityMeltingCrucibleMaster tem = te.master();
+            if(tem != null && te.isRedstonePos()) {
+                return new MeltingCruciblePeripheral(world, tem.getPos(), TileEntityMeltingCrucibleMaster.class);
+            }
         }
 
         return null;

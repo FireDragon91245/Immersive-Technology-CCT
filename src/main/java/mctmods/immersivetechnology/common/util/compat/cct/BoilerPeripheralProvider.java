@@ -7,6 +7,7 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import mctmods.immersivetechnology.ImmersiveTechnology;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityBoilerMaster;
+import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityBoilerSlave;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -22,8 +23,12 @@ public class BoilerPeripheralProvider implements IPeripheralProvider {
     public IPeripheral getPeripheral(@Nonnull World world, @Nonnull BlockPos blockPos, @Nonnull EnumFacing enumFacing) {
         TileEntity entity = world.getTileEntity(blockPos);
 
-        if (entity instanceof TileEntityBoilerMaster) {
-            return new BoilerPeripheral(world, blockPos, TileEntityBoilerMaster.class);
+        if(entity instanceof TileEntityBoilerSlave) {
+            TileEntityBoilerSlave te = (TileEntityBoilerSlave) entity;
+            TileEntityBoilerMaster tem = te.master();
+            if(tem != null && te.isRedstonePos()) {
+                return new BoilerPeripheral(world, tem.getPos(), TileEntityBoilerMaster.class);
+            }
         }
 
         return null;

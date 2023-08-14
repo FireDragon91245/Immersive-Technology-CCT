@@ -7,6 +7,7 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import mctmods.immersivetechnology.ImmersiveTechnology;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntitySolarMelterMaster;
+import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntitySolarMelterSlave;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -23,8 +24,12 @@ public class SolarMelterPeripheralProvider implements IPeripheralProvider {
     public IPeripheral getPeripheral(@Nonnull World world, @Nonnull BlockPos blockPos, @Nonnull EnumFacing enumFacing) {
         TileEntity entity = world.getTileEntity(blockPos);
 
-        if (entity instanceof TileEntitySolarMelterMaster) {
-            return new SolarMelterPeripheral(world, blockPos, TileEntitySolarMelterMaster.class);
+        if(entity instanceof TileEntitySolarMelterSlave) {
+            TileEntitySolarMelterSlave te = (TileEntitySolarMelterSlave) entity;
+            TileEntitySolarMelterMaster tem = te.master();
+            if(tem != null && te.isRedstonePos()) {
+                return new SolarMelterPeripheral(world, tem.getPos(), TileEntitySolarMelterMaster.class);
+            }
         }
 
         return null;

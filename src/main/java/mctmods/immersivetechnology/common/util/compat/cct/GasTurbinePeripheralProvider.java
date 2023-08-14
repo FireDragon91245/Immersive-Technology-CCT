@@ -7,6 +7,7 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import mctmods.immersivetechnology.ImmersiveTechnology;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityGasTurbineMaster;
+import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntityGasTurbineSlave;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -23,8 +24,12 @@ public class GasTurbinePeripheralProvider implements IPeripheralProvider {
     public IPeripheral getPeripheral(@Nonnull World world, @Nonnull BlockPos blockPos, @Nonnull EnumFacing enumFacing) {
         TileEntity entity = world.getTileEntity(blockPos);
 
-        if (entity instanceof TileEntityGasTurbineMaster) {
-            return new GasTurbinePeripheralPeripheral(world, blockPos, TileEntityGasTurbineMaster.class);
+        if(entity instanceof TileEntityGasTurbineSlave) {
+            TileEntityGasTurbineSlave te = (TileEntityGasTurbineSlave) entity;
+            TileEntityGasTurbineMaster tem = te.master();
+            if(tem != null && te.isRedstonePos()) {
+                return new GasTurbinePeripheralPeripheral(world, tem.getPos(), TileEntityGasTurbineMaster.class);
+            }
         }
 
         return null;
