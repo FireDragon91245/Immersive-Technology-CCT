@@ -39,7 +39,7 @@ public class CCTHelper extends ITCompatModule {
 
     @Override
     public void postInit() {
-
+        CCTManualHelper.addCCTManual();
     }
 
 }

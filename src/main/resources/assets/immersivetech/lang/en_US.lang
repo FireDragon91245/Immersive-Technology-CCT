@@ -298,3 +298,11 @@ ie.manual.entry.computer.heatExchanger1=§lgetFirstOutputTankInfo()§r: returns 
 ie.manual.entry.computer.highPressureSteamTurbine0=§lgetSpeed()§r: returns the speed of the turbine in RPM.<br>§lgetTankInfo()§r: returns information about the turbine's steam tank.<br>§lgetOutputTankInfo()§r: returns information about the turbine's output tank.
 
 ie.manual.entry.fluidPipes3=In order for the pump to pick up fluid blocks, it will need a power input at the top and a redstone signal. Pumps can also be used to extract from tanks and other fluid containers that do not have an automatic output. This will also require a redstone signal, but won't consume power.<br><br>Pumps have a new mode! The operating mode of the Fluid Pump can be changed by right clicking it with an Engineer's Wire Cutter. Toggle the mode if it's not behaving as expected.
+
+ie.manual.category.cct.name=CC: Tweaked
+ie.manual.entry.cct.boiler.name=Boiler API
+ie.manual.entry.cct.introduction.name=CC: Tweaked Introduction
+ie.manual.entry.cct.disableredstonecontrol.name=Override Redstone Control
+ie.manual.entry.cct.intro0=Immersive Technology adds a ComputerCraft Tweaked API for most Multiblocks.<br> This API allows you to get information about your machines like energy and fluid tanks, or enable or disable your machines per Computer.<br><br>Computers may only be atatched to the redstone port of a machine if the machine has no redstone port anywhere will work like on large tank or alternator.
+ie.manual.entry.cct.disableredstonecontrol0=Even after you attach and wrap a machine as a peripheral calling §lsetEnabled()§r will do nothing you first need to disable redstone control by calling §lsetComputerControl(true)§r. After that you can call §lsetEnabled()§r to toggle the machine on and off.<br><br>§lImportant Note next page!§r
+ie.manual.entry.cct.disableredstonecontrol1=Note: After a server / world restart / reload you must call §lsetComputerControl(true)§r and §lsetEnabled()§r again to disable redstone control and set state.<br>Computercontrol and on / off state will not be saved!
