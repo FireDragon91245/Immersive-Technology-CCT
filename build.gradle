@@ -46,7 +46,7 @@ minecraft {
 
 dependencies {
 	compile "curse.maven:${common.jei_version}"
-	deobfCompile "curse.maven:${common.imme_version}"
+	deobfCompile("curse.maven:${common.imme_version}")
 
 
 

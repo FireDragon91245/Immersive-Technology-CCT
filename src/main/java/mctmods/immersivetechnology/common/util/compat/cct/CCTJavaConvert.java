@@ -1,5 +1,6 @@
 package mctmods.immersivetechnology.common.util.compat.cct;
 
+import blusunrize.immersiveengineering.api.energy.immersiveflux.FluxStorage;
 import blusunrize.immersiveengineering.api.energy.immersiveflux.FluxStorageAdvanced;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -47,7 +48,7 @@ public class CCTJavaConvert {
         return table;
     }
 
-    public static HashMap<String, Object> EnergyToLuaTable(FluxStorageAdvanced energyStorage) {
+    public static HashMap<String, Object> EnergyToLuaTable(FluxStorage energyStorage) {
         HashMap<String, Object> table = new HashMap<>(2);
         table.put("capacity", energyStorage.getMaxEnergyStored());
         table.put("amount", energyStorage.getEnergyStored());
