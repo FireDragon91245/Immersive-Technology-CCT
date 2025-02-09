@@ -18,11 +18,11 @@ public class HeatExchangerDriver extends DriverSidedTileEntity {
     public ManagedEnvironment createEnvironment(World world, BlockPos pos, EnumFacing facing) {
         TileEntity tile = world.getTileEntity(pos);
 
-        if(tile instanceof TileEntityHeatExchangerSlave) {
+        if (tile instanceof TileEntityHeatExchangerSlave) {
             TileEntityHeatExchangerSlave te = (TileEntityHeatExchangerSlave) tile;
             TileEntityHeatExchangerMaster tem = te.master();
-            if(tem != null && te.isRedstonePos()) {
-                return new HeatExchangerDriver.HeatExchangerEnvironment(world, tem.getPos());
+            if (tem != null && te.isRedstonePos()) {
+                return new HeatExchangerEnvironment(world, tem.getPos());
             }
         }
         return null;
@@ -33,36 +33,42 @@ public class HeatExchangerDriver extends DriverSidedTileEntity {
         return TileEntityHeatExchangerSlave.class;
     }
 
-    public class HeatExchangerEnvironment extends ManagedEnvironmentIE.ManagedEnvMultiblock<TileEntityHeatExchangerMaster> {
+    public static class HeatExchangerEnvironment extends ManagedEnvironmentIE.ManagedEnvMultiblock<TileEntityHeatExchangerMaster> {
         public HeatExchangerEnvironment(World world, BlockPos pos) {
             super(world, pos, TileEntityHeatExchangerMaster.class);
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function():table -- get information about the first input tank")
         public Object[] getFirstInputTankInfo(Context context, Arguments args) {
-            return new Object[] {getTileEntity().tanks[0].getInfo()};
+            return new Object[]{getTileEntity().tanks[0].getInfo()};
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function():table -- get information about the second input tank")
         public Object[] getSecondInputTankInfo(Context context, Arguments args) {
-            return new Object[] {getTileEntity().tanks[1].getInfo()};
+            return new Object[]{getTileEntity().tanks[1].getInfo()};
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function():table -- get information about the first output tank")
         public Object[] getFirstOutputTankInfo(Context context, Arguments args) {
-            return new Object[] {getTileEntity().tanks[2].getInfo()};
+            return new Object[]{getTileEntity().tanks[2].getInfo()};
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function():table -- get information about the second output tank")
         public Object[] getSecondOutputTankInfo(Context context, Arguments args) {
-            return new Object[] {getTileEntity().tanks[3].getInfo()};
+            return new Object[]{getTileEntity().tanks[3].getInfo()};
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function(enabled:bool):nil -- Enables or disables computer control for the attached machine")
         public Object[] enableComputerControl(Context context, Arguments args) {
             return super.enableComputerControl(context, args);
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function(enabled:bool):nil")
         public Object[] setEnabled(Context context, Arguments args) {
             return super.setEnabled(context, args);

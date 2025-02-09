@@ -37,26 +37,30 @@ public class SolarTowerDriver extends DriverSidedTileEntity {
 		return TileEntitySolarTowerSlave.class;
 	}
 
-	public class SolarTowerEnvironment extends ManagedEnvironmentIE.ManagedEnvMultiblock<TileEntitySolarTowerMaster> {
+	public static class SolarTowerEnvironment extends ManagedEnvironmentIE.ManagedEnvMultiblock<TileEntitySolarTowerMaster> {
 		public SolarTowerEnvironment(World world, BlockPos pos) {
 			super(world, pos, TileEntitySolarTowerMaster.class);
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():number -- get the total strength of the reflectors pointing at the tower, an increase by 1 is the strength of one fully uncovered reflector")
 		public Object[] getReflectors(Context context, Arguments args) {
 			return new Object[] {getTileEntity().reflectorStrength};
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():table -- get information about the input tank")
 		public Object[] getInputTankInfo(Context context, Arguments args) {
 			return new Object[] {getTileEntity().tanks[0].getInfo()};
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():table -- get information about the output tank")
 		public Object[] getOutputTankInfo(Context context, Arguments args) {
 			return new Object[] {getTileEntity().tanks[1].getInfo()};
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():table -- get filled fluid canisters in all slots")
 		public Object[] getFullCanisters(Context context, Arguments args) {
 			HashMap<String, ItemStack> canisters = new HashMap<>(2);
@@ -65,6 +69,7 @@ public class SolarTowerDriver extends DriverSidedTileEntity {
 			return new Object[] {canisters};
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():table -- get empty fluid canisters in all slots")
 		public Object[] getEmptyCanisters(Context context, Arguments args) {
 			HashMap<String, ItemStack> canisters = new HashMap<>(2);
@@ -73,11 +78,13 @@ public class SolarTowerDriver extends DriverSidedTileEntity {
 			return new Object[] {canisters};
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function(enabled:bool):nil -- Enables or disables computer control for the attached machine")
 		public Object[] enableComputerControl(Context context, Arguments args) {
 			return super.enableComputerControl(context, args);
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function(enabled:bool):nil")
 		public Object[] setEnabled(Context context, Arguments args) {
 			return super.setEnabled(context, args);

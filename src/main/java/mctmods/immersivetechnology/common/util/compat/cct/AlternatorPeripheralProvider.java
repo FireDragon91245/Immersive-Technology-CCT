@@ -76,13 +76,10 @@ public class AlternatorPeripheralProvider implements IPeripheralProvider {
                     };
                 }
                 case 1: { // getEnergy
+                    HashMap<String, Object> result = CCTJavaConvert.EnergyToLuaTable(entity.energyStorage);
+                    result.put("energyGenerated", entity.energyGenerated());
                     return new Object[]{
-                            CCTJavaConvert.EnergyToLuaTable(entity.energyStorage),
-                            new HashMap<String, Object>() {
-                                {
-                                    put("energyGenerated", entity.energyGenerated());
-                                }
-                            }
+                            result
                     };
                 }
                 case 2: // getEnergyProduced

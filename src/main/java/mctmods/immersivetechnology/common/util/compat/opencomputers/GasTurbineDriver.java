@@ -18,10 +18,10 @@ public class GasTurbineDriver extends DriverSidedTileEntity {
     public ManagedEnvironment createEnvironment(World world, BlockPos pos, EnumFacing facing) {
         TileEntity tile = world.getTileEntity(pos);
 
-        if(tile instanceof TileEntityGasTurbineSlave) {
+        if (tile instanceof TileEntityGasTurbineSlave) {
             TileEntityGasTurbineSlave te = (TileEntityGasTurbineSlave) tile;
             TileEntityGasTurbineMaster tem = te.master();
-            if(tem != null && te.isRedstonePos()) {
+            if (tem != null && te.isRedstonePos()) {
                 return new GasTurbineEnvironment(world, tem.getPos());
             }
         }
@@ -33,31 +33,36 @@ public class GasTurbineDriver extends DriverSidedTileEntity {
         return TileEntityGasTurbineSlave.class;
     }
 
-    public class GasTurbineEnvironment extends ManagedEnvironmentIE.ManagedEnvMultiblock<TileEntityGasTurbineMaster> {
+    public static class GasTurbineEnvironment extends ManagedEnvironmentIE.ManagedEnvMultiblock<TileEntityGasTurbineMaster> {
         public GasTurbineEnvironment(World world, BlockPos pos) {
             super(world, pos, TileEntityGasTurbineMaster.class);
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function():number -- get the turbine speed in RPM")
         public Object[] getSpeed(Context context, Arguments args) {
-            return new Object[] {getTileEntity().speed};
+            return new Object[]{getTileEntity().speed};
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function():table -- get information about the turbine fuel level")
         public Object[] getInputTankInfo(Context context, Arguments args) {
-            return new Object[] {getTileEntity().tanks[0].getInfo()};
+            return new Object[]{getTileEntity().tanks[0].getInfo()};
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function():table -- get information about the turbine output tank level")
         public Object[] getOutputTankInfo(Context context, Arguments args) {
-            return new Object[] {getTileEntity().tanks[1].getInfo()};
+            return new Object[]{getTileEntity().tanks[1].getInfo()};
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function(enabled:bool):nil -- Enables or disables computer control for the attached machine")
         public Object[] enableComputerControl(Context context, Arguments args) {
             return super.enableComputerControl(context, args);
         }
 
+        @SuppressWarnings("unused")
         @Callback(doc = "function(enabled:bool):nil")
         public Object[] setEnabled(Context context, Arguments args) {
             return super.setEnabled(context, args);

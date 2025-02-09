@@ -37,31 +37,36 @@ public class BoilerDriver extends DriverSidedTileEntity {
 		return TileEntityBoilerSlave.class;
 	}
 
-	public class BoilerEnvironment extends ManagedEnvironmentIE.ManagedEnvMultiblock<TileEntityBoilerMaster> {
+	public static class BoilerEnvironment extends ManagedEnvironmentIE.ManagedEnvMultiblock<TileEntityBoilerMaster> {
 		public BoilerEnvironment(World world, BlockPos pos) {
 			super(world, pos, TileEntityBoilerMaster.class);
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():number -- get the heat level of the boiler")
 		public Object[] getHeat(Context context, Arguments args) {
 			return new Object[] {getTileEntity().heatLevel};
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():table -- get information about the internal fuel tank")
 		public Object[] getFuelTankInfo(Context context, Arguments args) {
 			return new Object[] {getTileEntity().tanks[0].getInfo()};
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():table -- get information about the input tank")
 		public Object[] getInputTankInfo(Context context, Arguments args) {
 			return new Object[] {getTileEntity().tanks[1].getInfo()};
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():table -- get information about the output tank")
 		public Object[] getOutputTankInfo(Context context, Arguments args) {
 			return new Object[] {getTileEntity().tanks[2].getInfo()};
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():table -- get filled fluid canisters in all slots")
 		public Object[] getFullCanisters(Context context, Arguments args) {
 			HashMap<String, ItemStack> canisters = new HashMap<>(3);
@@ -71,6 +76,7 @@ public class BoilerDriver extends DriverSidedTileEntity {
 			return new Object[] {canisters};
 		}
 
+		@SuppressWarnings("unused")
 		@Callback(doc = "function():table -- get empty fluid canisters in all slots")
 		public Object[] getEmptyCanisters(Context context, Arguments args) {
 			HashMap<String, ItemStack> canisters = new HashMap<>(3);

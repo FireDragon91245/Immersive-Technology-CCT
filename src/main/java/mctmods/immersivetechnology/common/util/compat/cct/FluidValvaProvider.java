@@ -5,6 +5,7 @@ import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
+import it.unimi.dsi.fastutil.Hash;
 import mctmods.immersivetechnology.ImmersiveTechnology;
 import mctmods.immersivetechnology.common.tileentities.TileEntityFluidValve;
 import net.minecraft.tileentity.TileEntity;
@@ -14,6 +15,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public class FluidValvaProvider implements IPeripheralProvider {
     @Nullable
@@ -51,6 +53,7 @@ public class FluidValvaProvider implements IPeripheralProvider {
                             "setMaxPerPacket",
                             "setMaxPerSecond",
                             "setMaxTargetFluidTank",
+                            "getFlowRates"
                     };
         }
 
@@ -92,6 +95,16 @@ public class FluidValvaProvider implements IPeripheralProvider {
                 case 5: // setMaxTargetFluidTank
                     getTileEntity().keepSize = getIntOrTrow(objects);
                     return new Object[]{};
+                case 6: // getFlowRates
+                    TileEntityFluidValve ent = getTileEntity();
+                    return new Object[]{
+                      new HashMap<String, Object>()
+                      {{
+                          put("flow_last_second", ent.lastAcceptedAmount);
+                          put("flow_last_average", ent.lastAverage);
+                          put("flow_average", ent.average);
+                      }}
+                    };
                 default:
                     return null;
             }
