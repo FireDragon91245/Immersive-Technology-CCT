@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public  abstract class ITPeripheral<T extends TileEntityIEBase> implements IPeripheral {
+public abstract class ITPeripheral<T extends TileEntityIEBase> implements IPeripheral {
 
     World w;
     BlockPos pos;
@@ -58,7 +58,7 @@ public  abstract class ITPeripheral<T extends TileEntityIEBase> implements IPeri
         private boolean CheckArgsBool(Object[] args) throws LuaException {
             if (args.length == 1) {
                 if (Boolean.class.isAssignableFrom(args[0].getClass())) {
-                    return  (Boolean) args[0];
+                    return (Boolean) args[0];
                 } else {
                     throw new LuaException("Expected boolean");
                 }

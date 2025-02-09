@@ -35,6 +35,7 @@ public class CCTHelper extends ITCompatModule {
             ComputerCraftAPI.registerPeripheralProvider(new ElectrolyticCrucibleBatteryPeripheralProvider());
         ComputerCraftAPI.registerPeripheralProvider(new AlternatorPeripheralProvider());
         ComputerCraftAPI.registerPeripheralProvider(new SteelSheetmetalTankPeripheralProvider());
+        ComputerCraftAPI.registerPeripheralProvider(new FluidValvaProvider());
     }
 
     @Override

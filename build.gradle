@@ -63,7 +63,7 @@ dependencies {
 	compileOnly "curse.maven:${common.crft_version}"
 	compileOnly "curse.maven:${common.opcm_version}"
 
-	compile 'org.squiddev:cc-tweaked-1.12.2:1.89.2'
+	compileOnly 'org.squiddev:cc-tweaked-1.12.2:1.89.2'
 }
 
 processResources {
