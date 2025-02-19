@@ -1,7 +1,6 @@
 buildscript {
 	repositories {
-		jcenter()
-		maven { url = "http://files.minecraftforge.net/maven" }
+		maven { url = "https://files.minecraftforge.net/maven" }
 	}
 	dependencies {
 		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
@@ -46,13 +45,7 @@ minecraft {
 
 dependencies {
 	compile "curse.maven:${common.jei_version}"
-	deobfCompile("curse.maven:${common.imme_version}")
-
-
-
-
-
-
+	deobfCompile "curse.maven:${common.imme_version}"
 
 	compileOnly "curse.maven:${common.top_version}"
 	compileOnly "curse.maven:${common.hwya_version}"
@@ -63,7 +56,7 @@ dependencies {
 	compileOnly "curse.maven:${common.crft_version}"
 	compileOnly "curse.maven:${common.opcm_version}"
 
-	compileOnly 'org.squiddev:cc-tweaked-1.12.2:1.89.2'
+	compileOnly "org.squiddev:${common.cct_version}"
 }
 
 processResources {
