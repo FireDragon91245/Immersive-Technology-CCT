@@ -21,9 +21,13 @@ public class OCHelper extends ITCompatModule {
 		if (Config.ITConfig.Machines.Multiblock.enable_solarTower) API.driver.add(new SolarTowerDriver());
 		if (Config.ITConfig.Machines.Multiblock.enable_gasTurbine) API.driver.add(new GasTurbineDriver());
 		if (Config.ITConfig.Machines.Multiblock.enable_heatExchanger) API.driver.add(new HeatExchangerDriver());
+        if (Config.ITConfig.Machines.Multiblock.enable_electrolyticCrucibleBattery) API.driver.add(new ElectrolyticCrucibleBatteryDriver());
+        if (Config.ITConfig.Machines.Multiblock.enable_solarMelter) API.driver.add(new SolarMelterDriver());
+        if (Config.ITConfig.Machines.Multiblock.enable_meltingCrucible) API.driver.add(new MeltingCrucibleDriver());
 
 		API.driver.add(new AlternatorDriver());
 		API.driver.add(new FluidValveDriver());
+        API.driver.add(new SteelSheetMetalTankDriver());
 	}
 
 	@Override
