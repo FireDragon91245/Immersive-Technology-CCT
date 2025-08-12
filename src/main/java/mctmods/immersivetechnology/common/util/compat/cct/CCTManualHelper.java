@@ -53,7 +53,7 @@ public class CCTManualHelper {
             //if (Config.ITConfig.Machines.Multiblock.enable_electrolyticCrucibleBattery)
             //    ComputerCraftAPI.registerPeripheralProvider(new ElectrolyticCrucibleBatteryPeripheralProvider());
             //ComputerCraftAPI.registerPeripheralProvider(new AlternatorPeripheralProvider());
-            //ComputerCraftAPI.registerPeripheralProvider(new SteelSheetmetalTankPeripheralProvider());
+            //ComputerCraftAPI.registerPeripheralProvider(new SteelSheetMetalTankPeripheralProvider());
         }
     }
 }

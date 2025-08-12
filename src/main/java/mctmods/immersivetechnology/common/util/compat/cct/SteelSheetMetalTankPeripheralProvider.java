@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class SteelSheetmetalTankPeripheralProvider implements IPeripheralProvider {
+public class SteelSheetMetalTankPeripheralProvider implements IPeripheralProvider {
 
     @Nullable
     @Override
@@ -24,10 +24,10 @@ public class SteelSheetmetalTankPeripheralProvider implements IPeripheralProvide
         TileEntity entity = world.getTileEntity(blockPos);
 
         if (entity instanceof TileEntitySteelSheetmetalTankSlave) {
-            TileEntitySteelSheetmetalTankMaster masterPos = ((TileEntitySteelSheetmetalTankSlave) entity).master();
+            TileEntitySteelSheetmetalTankMaster master = ((TileEntitySteelSheetmetalTankSlave) entity).master();
 
-            if (masterPos != null) {
-                return new SteelSheetmetalTankPeripheral(world, masterPos.getPos(), TileEntitySteelSheetmetalTankMaster.class);
+            if (master != null) {
+                return new SteelSheetmetalTankPeripheral(world, master.getPos(), TileEntitySteelSheetmetalTankMaster.class);
             }
         }
 
