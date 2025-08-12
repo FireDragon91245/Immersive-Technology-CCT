@@ -28,6 +28,9 @@ public abstract class ITCompatModule {
 
 	public static boolean isAdvancedRocketryLoaded = false;
 
+    public static boolean isAnyComputerModLoaded = false;
+    public static boolean onlyComputercraftComputerModLoaded = false;
+
 	static {
 		moduleClasses.put("crafttweaker", CraftTweakerHelper.class);
 		moduleClasses.put("theoneprobe", OneProbeHelper.class);
@@ -48,6 +51,8 @@ public abstract class ITCompatModule {
 			}
 		}
 		if(Loader.isModLoaded("advancedrocketry")) isAdvancedRocketryLoaded = true;
+        if(Loader.isModLoaded("computercraft") || Loader.isModLoaded("opencomputers")) isAnyComputerModLoaded = true;
+        if(Loader.isModLoaded("computercraft") && !Loader.isModLoaded("opencomputers")) onlyComputercraftComputerModLoaded = true;
 	}
 
 	public static void doModulesInit() {

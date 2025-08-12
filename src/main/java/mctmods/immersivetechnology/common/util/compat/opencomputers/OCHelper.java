@@ -28,6 +28,7 @@ public class OCHelper extends ITCompatModule {
 		API.driver.add(new AlternatorDriver());
 		API.driver.add(new FluidValveDriver());
         API.driver.add(new SteelSheetMetalTankDriver());
+        API.driver.add(new FluidPumpDriver());
 	}
 
 	@Override
