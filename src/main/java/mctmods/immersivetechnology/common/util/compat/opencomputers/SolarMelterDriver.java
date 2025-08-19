@@ -6,6 +6,7 @@ import li.cil.oc.api.machine.Callback;
 import li.cil.oc.api.machine.Context;
 import li.cil.oc.api.network.ManagedEnvironment;
 import li.cil.oc.api.prefab.DriverSidedTileEntity;
+import mctmods.immersivetechnology.common.Config;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntitySolarMelterMaster;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntitySolarMelterSlave;
 import mctmods.immersivetechnology.common.util.compat.cct.CCTJavaConvert;
@@ -81,7 +82,9 @@ public class SolarMelterDriver extends DriverSidedTileEntity {
         @SuppressWarnings("unused")
         @Callback(doc = "function():number -- gets the maximum solar level")
         public Object[] getMaxSolarLevel(Context context, Arguments args) {
-            return new Object[]{227.5};
+            return new Object[]{
+                    Config.ITConfig.Machines.SolarMelter.solarMelter_maximum_reflector_strength
+            };
         }
 
         @SuppressWarnings("unused")
