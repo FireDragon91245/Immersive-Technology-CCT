@@ -45,21 +45,33 @@ public class ElectrolyticCrucibleBatteryDriver extends DriverSidedTileEntity {
         @SuppressWarnings("unused")
         @Callback(doc = "function():table -- gets energy storage information")
         public Object[] getEnergy(Context context, Arguments args) {
-            return new Object[]{getTileEntity().energyStorage};
+            return new Object[]{
+                    CCTJavaConvert.EnergyToLuaTable(getTileEntity().energyStorage)
+            };
         }
 
         @SuppressWarnings("unused")
-        @Callback(doc = "function():table -- gets information about the fluid tanks")
-        public Object[] getTanks(Context context, Arguments args) {
-            TileEntityElectrolyticCrucibleBatteryMaster entity = getTileEntity();
-            return new Object[]{
-                    new HashMap<String, Object>(4) {{
-                        put("input", CCTJavaConvert.FluidTankToLuaTable(entity.tanks[0]));
-                        put("output_0", CCTJavaConvert.FluidTankToLuaTable(entity.tanks[1]));
-                        put("output_1", CCTJavaConvert.FluidTankToLuaTable(entity.tanks[2]));
-                        put("output_2", CCTJavaConvert.FluidTankToLuaTable(entity.tanks[3]));
-                    }}
-            };
+        @Callback(doc = "function():table -- gets information about the electrolytic crucible battery input tank")
+        public Object[] getInputTankInfo(Context context, Arguments args) {
+            return new Object[]{getTileEntity().tanks[0].getInfo()};
+        }
+
+        @SuppressWarnings("unused")
+        @Callback(doc = "function():table -- gets information about the electrolytic crucible battery first output tanks")
+        public Object[] getFirstOutputTankInfo(Context context, Arguments args) {
+            return new Object[]{getTileEntity().tanks[1].getInfo()};
+        }
+
+        @SuppressWarnings("unused")
+        @Callback(doc = "function():table -- gets information about the electrolytic crucible battery first output tanks")
+        public Object[] getSecondOutputTankInfo(Context context, Arguments args) {
+            return new Object[]{getTileEntity().tanks[2].getInfo()};
+        }
+
+        @SuppressWarnings("unused")
+        @Callback(doc = "function():table -- gets information about the electrolytic crucible battery first output tanks")
+        public Object[] getThirdOutputTankInfo(Context context, Arguments args) {
+            return new Object[]{getTileEntity().tanks[3].getInfo()};
         }
 
         @SuppressWarnings("unused")

@@ -14,8 +14,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.HashMap;
-
 public class MeltingCrucibleDriver extends DriverSidedTileEntity {
     @Override
     public Class<?> getTileEntityClass() {
@@ -43,12 +41,10 @@ public class MeltingCrucibleDriver extends DriverSidedTileEntity {
         }
 
         @SuppressWarnings("unused")
-        @Callback(doc = "function():table -- gets information about the fluid tanks")
-        public Object[] getTanks(Context context, Arguments args) {
+        @Callback(doc = "function():table -- gets information about the melting crucible output tank")
+        public Object[] getOutputTankInfo(Context context, Arguments args) {
             return new Object[]{
-                    new HashMap<String, Object>(1) {{
-                        put("output", CCTJavaConvert.FluidTankToLuaTable(getTileEntity().tanks[0]));
-                    }}
+                    getTileEntity().tanks[0].getInfo()
             };
         }
 

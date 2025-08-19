@@ -78,8 +78,10 @@ public class FluidPumpDriver extends DriverSidedTileEntity {
 
         @SuppressWarnings("unused")
         @Callback(doc = "function():table -- gets information about the fluid tank")
-        public Object[] getTanks(Context context, Arguments args) {
-            return new Object[]{CCTJavaConvert.FluidTankToLuaTable(getTileEntity().tank)};
+        public Object[] getTankInfo(Context context, Arguments args) {
+            return new Object[]{
+                    getTileEntity().tank.getInfo()
+            };
         }
 
         @Override
