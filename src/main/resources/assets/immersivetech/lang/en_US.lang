@@ -284,6 +284,20 @@ ie.manual.entry.computer.heatExchanger.name=Heat Exchanger ☎
 ie.manual.entry.computer.heatExchanger.subtext=Entropy says hi
 ie.manual.entry.computer.highPressureSteamTurbine.name=High Pressure Steam Turbine ☎
 ie.manual.entry.computer.highPressureSteamTurbine.subtext=Double Rankine
+ie.manual.entry.computer.alternator.name=Alternator ☎
+ie.manual.entry.computer.alternator.subtext=Let's transform
+ie.manual.entry.computer.fluidValve.name=Fluid Valve ☎
+ie.manual.entry.computer.fluidValve.subtext=Control the flow
+ie.manual.entry.computer.fluidPump.name=Fluid Pump ☎
+ie.manual.entry.computer.fluidPump.subtext=Pump it up
+ie.manual.entry.computer.steelSheetMetalTank.name=Steel Fluid Tank ☎
+ie.manual.entry.computer.steelSheetMetalTank.subtext=Full to the max!
+ie.manual.entry.computer.electrolyticCrucibleBattery.name=Electrolytic Crucible Battery ☎
+ie.manual.entry.computer.electrolyticCrucibleBattery.subtext=The power of electricity compels you!
+ie.manual.entry.computer.meltingCrucible.name=Melting Crucible ☎
+ie.manual.entry.computer.meltingCrucible.subtext=Not a pulse jet. Not a furnace.
+ie.manual.entry.computer.solarMelter.name=Solar Melting Crucible ☎
+ie.manual.entry.computer.solarMelter.subtext=Cortas vs. Mackenzies
 
 ie.manual.entry.computer.steamTurbine0=§lgetSpeed()§r: returns the speed of the turbine in RPM.<br>§lgetTankInfo()§r: returns information about the turbine's steam tank.<br>§lgetOutputTankInfo()§r: returns information about the turbine's output tank.
 ie.manual.entry.computer.boiler0=§lgetHeat()§r: returns the boiler's heat level.<br>§lgetFuelTankInfo()§r: returns information about the boiler's fuel tank.<br>§lgetInputTankInfo()§r: returns information about the boiler's input tank.<br>§lgetOutputTankInfo()§r: returns information about the boiler's output tank.
@@ -296,6 +310,15 @@ ie.manual.entry.computer.gasTurbine0=§lgetSpeed()§r: returns the speed of the 
 ie.manual.entry.computer.heatExchanger0=§lgetFirstInputTankInfo()§r: returns a table with information about the heat exchanger's first input tank (upper loop).<br>§lgetSecondInputTankInfo()§r: returns a table with information about the heat exchanger's second input tank (lower loop).
 ie.manual.entry.computer.heatExchanger1=§lgetFirstOutputTankInfo()§r: returns a table with information about the heat exchanger's first output tank (upper loop).<br>§lgetSecondOutputTankInfo()§r: returns a table with information about the heat exchanger's second output tank (lower loop).
 ie.manual.entry.computer.highPressureSteamTurbine0=§lgetSpeed()§r: returns the speed of the turbine in RPM.<br>§lgetTankInfo()§r: returns information about the turbine's steam tank.<br>§lgetOutputTankInfo()§r: returns information about the turbine's output tank.
+ie.manual.entry.computer.alternator0=§lgetSpeed()§r: returns the speed of the alternator in RPM.<br>§lgetEnergy()§r: returns a table with energy storage, capacity, and energy produced.<br>§lgetEnergyProduced()§r: returns how much energy is generated per tick.
+ie.manual.entry.computer.fluidValve0=§lgetMaxPerPacket()§r: returns the limit per packet in mB.<br>§lgetMaxPerSecond()§r: returns the limit per second in mB.<br>§lgetMaxTargetFluidTank()§r: returns the limit in the target tank in mB.<br>§lsetMaxPerPacket(int)§r: sets the limit per packet in mB.<br>§lsetMaxPerSecond(int)§r: sets the limit per second in mB.<br>§lsetMaxTargetFluidTank(int)§r: sets the limit in the target tank in mB.<br>§lgetFlowRates()§r: returns a table with average flow rates.
+ie.manual.entry.computer.fluidPump0=§lgetComputerControl()§r: checks if computer control is enabled.<br>§lsetComputerControl(boolean)§r: enables or disables computer control.<br>§lgetEnabled()§r: checks if the pump is enabled.<br>§lsetEnabled(boolean)§r: enables or disables the pump.<br>§lgetPower()§r: returns a table with energy storage information.<br>§lgetTankInfo()§r: returns information about the fluid tank.
+ie.manual.entry.computer.steelSheetMetalTank0=§lgetTank()§r: returns information about the tank's fluid storage.
+ie.manual.entry.computer.electrolyticCrucibleBattery0=§lgetEnergy()§r: returns a table with energy storage information.<br>§lgetInputTankInfo()§r: returns information about the input tank.<br>§lgetFirstOutputTankInfo()§r: returns information about the first output tank.<br>§lgetSecondOutputTankInfo()§r: returns information about the second output tank.<br>§lgetThirdOutputTankInfo()§r: returns information about the third output tank.<br>§lgetComputerControl()§r: checks if computer control is enabled.
+ie.manual.entry.computer.electrolyticCrucibleBattery1=§lsetComputerControl(boolean)§r: enables or disables computer control.<br>§lgetEnabled()§r: checks if the machine is enabled.<br>§lsetEnabled(boolean)§r: enables or disables the machine.
+ie.manual.entry.computer.meltingCrucible0=§lgetOutputTankInfo()§r: returns information about the output tank.<br>§lgetComputerControl()§r: checks if computer control is enabled.<br>§lsetComputerControl(boolean)§r: enables or disables computer control.<br>§lgetEnabled()§r: checks if the machine is enabled.<br>§lsetEnabled(boolean)§r: enables or disables the machine.<br>§lgetInputItem()§r: returns information about the input item.
+ie.manual.entry.computer.solarMelter0=§lgetOutputTankInfo()§r: returns information about the output tank.<br>§lgetComputerControl()§r: checks if computer control is enabled.<br>§lsetComputerControl(boolean)§r: enables or disables computer control.<br>§lgetEnabled()§r: checks if the machine is enabled.<br>§lsetEnabled(boolean)§r: enables or disables the machine.
+ie.manual.entry.computer.solarMelter1=§lgetSolarLevel()§r: returns the current solar level.<br>§lgetMaxSolarLevel()§r: returns the maximum solar level.<br>§lgetInputItem()§r: returns information about the input item.
 
 ie.manual.entry.fluidPipes3=In order for the pump to pick up fluid blocks, it will need a power input at the top and a redstone signal. Pumps can also be used to extract from tanks and other fluid containers that do not have an automatic output. This will also require a redstone signal, but won't consume power.<br><br>Pumps have a new mode! The operating mode of the Fluid Pump can be changed by right clicking it with an Engineer's Wire Cutter. Toggle the mode if it's not behaving as expected.
 

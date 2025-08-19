@@ -47,6 +47,33 @@ public class ComputerManualHelper {
                         new ManualPages.Text(ManualHelper.getManual(), "computer.heatExchanger0"),
                         new ManualPages.Text(ManualHelper.getManual(), "computer.heatExchanger1")
                 );
+            if (Config.ITConfig.Machines.Multiblock.enable_electrolyticCrucibleBattery)
+                ManualHelper.getManual().addEntry("computer.electrolyticCrucibleBattery", "computers",
+                        new ManualPages.Text(ManualHelper.getManual(), "computer.electrolyticCrucibleBattery0"),
+                        new ManualPages.Text(ManualHelper.getManual(), "computer.electrolyticCrucibleBattery1")
+                );
+            if (Config.ITConfig.Machines.Multiblock.enable_meltingCrucible)
+                ManualHelper.getManual().addEntry("computer.meltingCrucible", "computers",
+                        new ManualPages.Text(ManualHelper.getManual(), "computer.meltingCrucible0")
+                );
+            if (Config.ITConfig.Machines.Multiblock.enable_solarMelter)
+                ManualHelper.getManual().addEntry("computer.solarMelter", "computers",
+                        new ManualPages.Text(ManualHelper.getManual(), "computer.solarMelter0"),
+                        new ManualPages.Text(ManualHelper.getManual(), "computer.solarMelter1")
+                );
+
+            ManualHelper.getManual().addEntry("computer.alternator", "computers",
+                    new ManualPages.Text(ManualHelper.getManual(), "computer.alternator0")
+            );
+            ManualHelper.getManual().addEntry("computer.fluidValve", "computers",
+                    new ManualPages.Text(ManualHelper.getManual(), "computer.fluidValve0")
+            );
+            ManualHelper.getManual().addEntry("computer.fluidPump", "computers",
+                    new ManualPages.Text(ManualHelper.getManual(), "computer.fluidPump0")
+            );
+            ManualHelper.getManual().addEntry("computer.steelSheetMetalTank", "computers",
+                    new ManualPages.Text(ManualHelper.getManual(), "computer.steelSheetMetalTank0")
+            );
         }
     }
 }
