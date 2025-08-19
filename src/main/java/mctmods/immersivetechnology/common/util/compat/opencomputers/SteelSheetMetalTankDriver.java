@@ -8,7 +8,6 @@ import li.cil.oc.api.network.ManagedEnvironment;
 import li.cil.oc.api.prefab.DriverSidedTileEntity;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntitySteelSheetmetalTankMaster;
 import mctmods.immersivetechnology.common.blocks.metal.tileentities.TileEntitySteelSheetmetalTankSlave;
-import mctmods.immersivetechnology.common.util.compat.cct.CCTJavaConvert;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -42,8 +41,10 @@ public class SteelSheetMetalTankDriver extends DriverSidedTileEntity {
 
         @SuppressWarnings("unused")
         @Callback(doc = "function():table -- gets information about the tank")
-        public Object[] getTank(Context context, Arguments args) {
-            return new Object[]{CCTJavaConvert.FluidTankToLuaTable(getTileEntity().tank)};
+        public Object[] getTankInfo(Context context, Arguments args) {
+            return new Object[]{
+                    getTileEntity().tank.getInfo()
+            };
         }
 
         @Override
